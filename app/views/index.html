@@ -1,20 +1,102 @@
-{% extends "layouts/main.html" %}
+{% extends 'nationalarchives/templates/layouts/_prototype-kit.njk' %}
 
-{% set pageName="Home" %}
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from 'nationalarchives/components/card/macro.njk' import tnaCard %}
+
+{% set pageTitle = 'What’s on' %}
+{% set theme = 'light' %}
+{% set themeAccent = 'blue' %}
+
+{% block beforeContent %}
+<div class="tna-container">
+  {{ tnaBreadcrumbs({
+    items: [
+      {
+        text: 'Home',
+        href: '/'
+      }
+    ],
+    classes: 'tna-column tna-column--full tna-!--padding-vertical-s'
+  }) }}
+</div>
+{% endblock %}
 
 {% block content %}
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
-
-    <h1 class="govuk-heading-xl">
-      {{ serviceName }}
-    </h1>
-
-    {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
+<div class="tna-section">
+  <div class="tna-container">
+    <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+      <h1 class="tna-heading-xl">
+        {{ pageTitle }}
+      </h1>
+    </div>
+  </div>
+  <div class="tna-container">
+    <div class="tna-column tna-column--width-1-2">
+      {{ tnaCard({
+        title: "Events",
+        headingLevel: 2,
+        headingSize: "m",
+        href: "/events",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet luctus libero. Cras nec mauris ex. Fusce nisl erat, efficitur sed auctor ornare, varius fermentum arcu.",
+        imageSrc: "https://picsum.photos/600/400?1",
+        imageWidth: 600,
+        imageHeight: 400,
+        imageAlt: "",
+        style: 'accent',
+        fullAreaClick: true,
+        classes: 'tna-!--margin-top-l'
+      }) }}
+    </div>
+    <div class="tna-column tna-column--width-1-2">
+      {{ tnaCard({
+        title: "Exhibitions",
+        headingLevel: 2,
+        headingSize: "m",
+        href: "/exhibitions",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet luctus libero. Cras nec mauris ex. Fusce nisl erat, efficitur sed auctor ornare, varius fermentum arcu.",
+        imageSrc: "https://picsum.photos/600/400?2",
+        imageWidth: 600,
+        imageHeight: 400,
+        imageAlt: "",
+        style: 'accent',
+        fullAreaClick: true,
+        classes: 'tna-!--margin-top-l'
+      }) }}
+    </div>
+  </div>
+  <div class="tna-container">
+    <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+      {{ tnaCard({
+        title: "Things for children",
+        headingLevel: 2,
+        headingSize: "m",
+        href: "#",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet luctus libero. Cras nec mauris ex. Fusce nisl erat, efficitur sed auctor ornare, varius fermentum arcu.",
+        imageSrc: "https://picsum.photos/600/400?3",
+        imageWidth: 600,
+        imageHeight: 400,
+        imageAlt: "",
+        horizontal: true,
+        style: 'contrast',
+        fullAreaClick: true,
+        classes: 'tna-!--margin-top-l'
+      }) }}
+      {{ tnaCard({
+        title: "Things to do today",
+        headingLevel: 2,
+        headingSize: "m",
+        href: "#",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet luctus libero. Cras nec mauris ex. Fusce nisl erat, efficitur sed auctor ornare, varius fermentum arcu.",
+        imageSrc: "https://picsum.photos/600/400?4",
+        imageWidth: 600,
+        imageHeight: 400,
+        imageAlt: "",
+        horizontal: true,
+        style: 'contrast',
+        fullAreaClick: true,
+        classes: 'tna-!--margin-top-l'
+      }) }}
+    </div>
   </div>
 </div>
-
 {% endblock %}

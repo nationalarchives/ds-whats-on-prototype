@@ -1,0 +1,184 @@
+{% extends 'nationalarchives/templates/layouts/_prototype-kit.njk' %}
+
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from 'nationalarchives/components/button/macro.njk' import tnaButton %}
+{% from 'nationalarchives/components/checkboxes/macro.njk' import tnaCheckboxes %}
+{% from 'nationalarchives/components/card/macro.njk' import tnaCard %}
+{% from 'nationalarchives/components/compound-filters/macro.njk' import tnaCompoundFilters %}
+{% from 'nationalarchives/components/date-search/macro.njk' import tnaDateSearch %}
+{% from 'nationalarchives/components/radios/macro.njk' import tnaRadios %}
+{% from 'nationalarchives/components/search-field/macro.njk' import tnaSearchField %}
+
+{% set pageTitle = 'Events' %}
+{% set theme = 'light' %}
+{% set themeAccent = 'blue' %}
+
+{% block beforeContent %}
+<div class="tna-background-accent">
+  <div class="tna-container">
+    {{ tnaBreadcrumbs({
+      items: [
+        {
+          text: 'Home',
+          href: '/'
+        },
+        {
+          text: 'What’s on',
+          href: '/'
+        }
+      ],
+      classes: 'tna-column tna-column--full tna-!--padding-vertical-s'
+    }) }}
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="tna-background-accent tna-!--padding-vertical-xl">
+  <div class="tna-container">
+    <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+      <h1 class="tna-heading-xl">
+        {{ pageTitle }}
+      </h1>
+      <p class="tna-large-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet luctus libero. Cras nec mauris ex. Fusce nisl erat, efficitur sed auctor ornare, varius fermentum arcu.</p>
+      {{ tnaSearchField({}) }}
+    </div>
+  </div>
+</div>
+<div class="tna-section">
+  <div class="tna-container">
+    <div class="tna-column tna-column--width-1-3 tna-column--full-small tna-column--full-tiny">
+      <h2 class="tna-heading-l">Filters</h2>
+      {{ tnaCompoundFilters({
+        items: [
+          {
+            label: "Location: Online",
+            href: "#"
+          },
+          {
+            label: "Location: Kew",
+            href: "#"
+          },
+          {
+            label: "Types: Talks",
+            href: "#"
+          }
+        ],
+        removeAllHref: "#",
+        classes: "tna-!--margin-top-s"
+      }) }}
+      {{ tnaDateSearch({
+        label: "Date",
+        headingLevel: 4,
+        headingSize: "s",
+        id: "date",
+        name: "date"
+      }) }}
+      {{ tnaCheckboxes({
+        label: "Location",
+        headingLevel: 4,
+        headingSize: "s",
+        id: "location",
+        name: "location",
+        items: [
+          {
+            text: "Online",
+            value: "alpha",
+            checked: true
+          },
+          {
+            text: "Kew",
+            value: "beta",
+            checked: true
+          }
+        ],
+        small: true
+      }) }}
+      {{ tnaCheckboxes({
+        label: "Types",
+        headingLevel: 4,
+        headingSize: "s",
+        id: "type",
+        name: "type",
+        items: [
+          {
+            text: "Talks",
+            value: "talks",
+            checked: true
+          },
+          {
+            text: "Activities",
+            value: "beta"
+          }
+        ],
+        small: true
+      }) }}
+      {{ tnaRadios({
+        label: "Price",
+        headingLevel: 4,
+        headingSize: "s",
+        id: "price",
+        name: "price",
+        items: [
+          {
+            text: "Any price",
+            value: "any"
+          },
+          {
+            text: "Free events",
+            value: "free"
+          },
+          {
+            text: "Paid events",
+            value: "paid"
+          }
+        ],
+        selected: "any",
+        small: true
+      }) }}
+      <div class="tna-button-group tna-button-group--small">
+        {{ tnaButton({
+          text: "Apply filters",
+          buttonElement: true,
+          type: "submit"
+        }) }}
+        {{ tnaButton({
+          text: "Clear filters",
+          buttonElement: true,
+          type: "reset",
+          plain: true
+        }) }}
+      </div>
+    </div>
+    <div class="tna-column tna-column--width-2-3 tna-column--full-small tna-column--full-tiny">
+      <nav aria-label="Events">
+        <ul class="tna-container tna-container--nested">
+          {%- for item in range(0, 12) %}
+          <li class="tna-column tna-column--full tna-!--margin-bottom-s">
+            {{ tnaCard({
+              supertitle: 'Event',
+              title: "Event " + (item + 1),
+              headingLevel: 2,
+              headingSize: "m",
+              href: "/events/details",
+              text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet luctus libero. Cras nec mauris ex. Fusce nisl erat, efficitur sed auctor ornare, varius fermentum arcu.",
+              imageSrc: "https://picsum.photos/600/400?random=" + item,
+              imageWidth: 600,
+              imageHeight: 400,
+              imageAlt: "",
+              horizontal: true,
+              horizontalFlipped: true,
+              horizontalSmallImage: true,
+              style: 'plain',
+              fullAreaClick: true
+            }) }}
+          </li>
+          {%- endfor %}
+        </ul>
+      </nav>
+    </div>
+</div>
+
+
+
+{% endblock %}
